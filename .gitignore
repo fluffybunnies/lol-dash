@@ -1,0 +1,17 @@
+
+# env
+/config.local.json
+
+# build
+/node_modules
+/build/*
+
+# structure
+!.g
+
+# misc
+~*
+*~
+npm-debug.log*
+.DS_Store
+Thumbs.db
