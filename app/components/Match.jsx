@@ -1,7 +1,8 @@
 import React from 'react'
 
 import styles from './Match.css'
-import format  from '../utils/format'
+import format from '../utils/format'
+import { champIdToName } from  '../utils/champions'
 
 const BLUE_TEAM_ID = 100
 
@@ -54,7 +55,7 @@ export default class Match extends React.Component {
 	buildPlayerRow(player, index) {
 		return <div className="Match-team-player" key={index}>
 			<div className="Match-team-player-name">{player.id.summonerName}</div>
-			<div className="Match-team-player-champ">Godzilla</div>
+			<div className="Match-team-player-champ">{champIdToName(player.championId)}</div>
 			<div className="Match-team-player-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>
 		</div>
 	}

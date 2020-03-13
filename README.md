@@ -15,8 +15,7 @@ npm start
 
 
 ## To Do
-- Add: lane, champ, win/lose
-- Sort players by lane or score
+- Build out the spectate-match module
 - Refresh periodically
 	- Can simply re-fetch summoner at top level
 
