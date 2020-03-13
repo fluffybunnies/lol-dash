@@ -6,7 +6,9 @@ body {
 	background-size: cover;
 	background-position: center center;
 	background-attachment: fixed;
+	letter-spacing: 0.01em;
 }
+
 
 .Site {
 	display: flex;
@@ -31,3 +33,21 @@ body {
 }
 
 
+.Page {
+}
+
+.Page-Modules {
+	display: flex;
+	/*align-items: center;*/
+}
+.Page-Modules >.Module {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+}
+.Page-Modules >.Module:nth-child(1) {
+	margin-right: 10px;
+}
+.Page-Modules >.Module:nth-child(2) {
+	margin-left: 10px;
+}

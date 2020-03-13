@@ -35,7 +35,7 @@ export default class SelectSummoner extends React.Component {
 			busy: true
 			,errMsg: null
 		})
-		const url = 'lol/summoner/v4/summoners/by-name/' + encodeURIComponent(summonerName)
+		const url = `lol/summoner/v4/summoners/by-name/${encodeURIComponent(summonerName)}`
 		try {
 			const summoner = await api(url)
 			this.props.onSelect && this.props.onSelect(summoner)

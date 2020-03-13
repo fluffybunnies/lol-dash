@@ -4,7 +4,8 @@ const path = require('path')
 
 
 module.exports = {
-	mode: 'production',
+	mode: 'development',
+	//optimization: { minimize: false },
 	entry: ['@babel/polyfill', './app/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),

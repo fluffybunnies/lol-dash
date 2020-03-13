@@ -1,0 +1,30 @@
+.Match {
+}
+.Match-title {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+.Match-loading {
+	color: #9999;
+}
+.Match-team {
+	padding: 0.3em 0.5em;
+}
+.Match-team-red {
+	background: rgba(255,0,0,0.05);
+}
+.Match-team-blue {
+	background: rgba(0,0,255,0.05);
+}
+.Match-team-vs {
+	margin: 10px 0 9px 0;
+	line-height: 1;
+	text-align: center;
+	text-transform: uppercase;
+}
+.Match-team-player {
+	margin: 0.1em 0;
+}
+.Match-team-player-name {
+}
