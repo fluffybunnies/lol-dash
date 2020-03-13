@@ -1,12 +1,12 @@
 import React from 'react'
 
-import styles from './SearchSummoner.css'
+import styles from './SelectSummoner.css'
 
 import SearchBox from './SearchBox.jsx'
 import api from '../utils/api.js'
 
 
-export default class SearchSummoner extends React.Component {
+export default class SelectSummoner extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -16,9 +16,9 @@ export default class SearchSummoner extends React.Component {
 	}
 
 	render() {
-		return <div className="SearchSummoner">
+		return <div className="SelectSummoner">
 			<SearchBox placeholder="Summoner name..." disabled={this.state.busy} onSubmit={this.onSubmit.bind(this)} />
-			{this.state.errMsg && <div class="SearchSummoner-error">{this.state.errMsg}</div>}
+			{this.state.errMsg && <div class="SelectSummoner-error">{this.state.errMsg}</div>}
 		</div>
 	}
 
@@ -38,9 +38,9 @@ export default class SearchSummoner extends React.Component {
 		const url = 'lol/summoner/v4/summoners/by-name/' + encodeURIComponent(summonerName)
 		try {
 			const summoner = await api(url)
-			console.log('SUMMONER ', summoner)
+			this.props.onSelect && this.props.onSelect(summoner)
 		} catch (e)  {
-			console.error('ERROR', 'SearchSummoner', 'onSubmit', e)
+			console.error('ERROR', 'SelectSummoner', 'onSubmit', e)
 			this.setState({
 				errMsg: `Error fetching summoner "${summonerName}"`
 			})

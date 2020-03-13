@@ -1,12 +1,12 @@
-.SearchSummoner >.SearchBox {
+.SelectSummoner >.SearchBox {
 	width: auto;
 }
 
-.SearchSummoner >.SearchBox >input {
+.SelectSummoner >.SearchBox >input {
 	font-size: 20px;
 }
 
-.SearchSummoner-error {
+.SelectSummoner-error {
 	padding-top: 0.5em;
 	text-align: center;
 	font-size: 14px;

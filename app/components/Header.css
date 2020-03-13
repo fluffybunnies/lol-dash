@@ -1,8 +1,6 @@
 .Header {
-	background-color: #eee;
-	border-bottom: 1px solid #ddd;
+	color: #fff;
 
-	font-size: 14px;
-	text-transform: uppercase;
-	text-align: center;
+	font-size: 19px;
+	letter-spacing: 0.05em;
 }

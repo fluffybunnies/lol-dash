@@ -2,18 +2,18 @@ import React from 'react'
 
 import styles from './HomePage.css'
 
-import SearchSummoner from './SearchSummoner.jsx'
+import SelectSummoner from './SelectSummoner.jsx'
 
 
 export default class HomePage extends React.Component {
 
 	render() {
 		return <main className="Page HomePage">
-			<SearchSummoner onChange={this.onSummonerChange.bind(this)} />
+			<SelectSummoner onSelect={this.onSummonerSelect.bind(this)} />
 		</main>
 	}
 
-	onSummonerChange(summoner) {
-		console.log('Summoner '+summoner)
+	onSummonerSelect(summoner) {
+		console.log('Summoner', summoner)
 	}
 }
