@@ -1,5 +1,6 @@
 const express = require('express')
 ,path = require('path')
+,config = require('../config')
 
 module.exports = {
 	app: () => {
@@ -12,6 +13,8 @@ module.exports = {
 		app.get('/', (req,res) => {
 			res.sendFile(indexPath)
 		})
+
+		app.use(config.apiLocalHost, require('./api'))
 
 		return app
 	}

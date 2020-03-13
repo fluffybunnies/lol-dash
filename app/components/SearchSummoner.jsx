@@ -40,7 +40,7 @@ export default class SearchSummoner extends React.Component {
 			const summoner = await api(url)
 			console.log('SUMMONER ', summoner)
 		} catch (e)  {
-			console.error('SearchSummoner', e)
+			console.error('ERROR', 'SearchSummoner', 'onSubmit', e)
 			this.setState({
 				errMsg: `Error fetching summoner "${summonerName}"`
 			})
