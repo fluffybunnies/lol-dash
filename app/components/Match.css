@@ -19,13 +19,12 @@
 }
 .Match-team {
 	padding: 0.3em 0.5em;
-	position: relative;
 }
-.Match-team-red {
+.Match-team-winners {
+	background: rgba(0,255,0,0.05);
+}
+.Match-team-losers {
 	background: rgba(255,0,0,0.05);
-}
-.Match-team-blue {
-	background: rgba(0,0,255,0.05);
 }
 .Match-team-vs {
 	margin: 10px 0 9px 0;
@@ -49,16 +48,4 @@
 }
 .Match-team-player-kda {
 	text-align: right;
-}
-.Match-team-win::after, .Match-team-lose::after {
-	position: absolute;
-	right: 0.5em;
-	top: 0.3em;
-	opacity: 0.2;
-}
-.Match-team-win::after {
-	content: 'W';
-}
-.Match-team-lose::after {
-	content: 'L';
 }

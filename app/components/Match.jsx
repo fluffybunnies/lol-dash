@@ -4,23 +4,19 @@ import styles from './Match.css'
 import format from '../utils/format'
 import { champIdToName } from  '../utils/champions'
 
-const BLUE_TEAM_ID = 100
-
 
 export default class Match extends React.Component {
 	render() {
 		let matchJsx = <div className="Match-loading">Fetching match data...</div>
 		if (this.props.matchData) {
 			const teams = this.extractTeamsFromMatch(this.props.matchData)
-			const blueTeamWon = (this.props.matchData.teams[0].teamId == BLUE_TEAM_ID && this.props.matchData.teams[0].win == 'Win')
-				|| (this.props.matchData.teams[1].teamId == BLUE_TEAM_ID && this.props.matchData.teams[1].win == 'Win')
 			matchJsx = <>
-				<div className={'Match-team Match-team-blue Match-team-'+(blueTeamWon?'win':'lost')}>
-					{teams.blue.map(this.buildPlayerRow)}
+				<div className="Match-team Match-team-winners">
+					{teams.winners.map(this.buildPlayerRow)}
 				</div>
 				<div className="Match-team-vs">vs</div>
-				<div className={'Match-team Match-team-red Match-team-'+(blueTeamWon?'lose':'win')}>
-					{teams.red.map(this.buildPlayerRow)}
+				<div className="Match-team Match-team-losers">
+					{teams.losers.map(this.buildPlayerRow)}
 				</div>
 			</>
 		}
@@ -35,15 +31,16 @@ export default class Match extends React.Component {
 
 	extractTeamsFromMatch(matchData) {
 		const teams = {
-			blue: [],
-			red: [],
+			winners: [],
+			losers: []
 		}
 		const players = {}
+		const winningTeamId = matchData.teams[0].win == 'Win' ? matchData.teams[0].teamId : matchData.teams[1].teamId
 		matchData.participants.forEach(player => {
-			if (player.teamId == BLUE_TEAM_ID) {
-				teams.blue.push(players[player.participantId] = player)
+			if (player.teamId == winningTeamId) {
+				teams.winners.push(players[player.participantId] = player)
 			} else {
-				teams.red.push(players[player.participantId] = player)
+				teams.losers.push(players[player.participantId] = player)
 			}
 		})
 		matchData.participantIdentities.forEach(player => {
