@@ -4,12 +4,22 @@
 	font-size: 18px;
 	font-weight: bold;
 	margin-bottom: 1em;
+	position: relative;
+}
+.Match-title-note {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-weight: normal;
+	font-size: 14px;
+	color: #aaa;
 }
 .Match-loading {
 	color: #9999;
 }
 .Match-team {
 	padding: 0.3em 0.5em;
+	position: relative;
 }
 .Match-team-red {
 	background: rgba(255,0,0,0.05);
@@ -25,6 +35,30 @@
 }
 .Match-team-player {
 	margin: 0.1em 0;
+	display: flex;
+}
+.Match-team-player-name, .Match-team-player-champ, .Match-team-player-kda {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .Match-team-player-name {
+	flex-grow: 2;
+}
+.Match-team-player-kda {
+	text-align: right;
+}
+.Match-team-win::after, .Match-team-lose::after {
+	position: absolute;
+	right: 0.5em;
+	top: 0.3em;
+	opacity: 0.2;
+}
+.Match-team-win::after {
+	content: 'W';
+}
+.Match-team-lose::after {
+	content: 'L';
 }

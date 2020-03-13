@@ -21,7 +21,7 @@ export default class HomePage extends React.Component {
 			<SelectSummoner onSelect={this.onSummonerSelect.bind(this)} />
 			<div className="Page-Modules">
 				{this.state.summoner && <Module content={'Current Match'} />}
-				{this.state.summoner && <Module content={<PreviousMatch summoner={this.state.summoner} />} />}
+				{this.state.summoner && <Module content={<PreviousMatch summoner={this.state.summoner} key={this.state.summoner.id} />} />}
 			</div>
 		</main>
 	}

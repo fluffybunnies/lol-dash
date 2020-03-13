@@ -15,7 +15,7 @@ npm start
 
 
 ## To Do
-- NEXT: solve querystring issue
+- Add: lane, champ, win/lose
 - Sort players by lane or score
 - Refresh periodically
 	- Can simply re-fetch summoner at top level
