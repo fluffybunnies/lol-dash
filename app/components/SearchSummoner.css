@@ -1,5 +1,14 @@
+.SearchSummoner >.SearchBox {
+	width: auto;
+}
+
+.SearchSummoner >.SearchBox >input {
+	font-size: 20px;
+}
+
 .SearchSummoner-error {
 	padding-top: 0.5em;
-	font-size: 12px;
+	text-align: center;
+	font-size: 14px;
 	color: #c33;
 }
