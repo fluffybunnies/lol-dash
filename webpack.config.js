@@ -5,7 +5,7 @@ const path = require('path')
 
 module.exports = {
 	mode: 'production',
-	entry: './app/index.js',
+	entry: ['@babel/polyfill', './app/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),
 		filename: 'bundle.js'
@@ -21,10 +21,17 @@ module.exports = {
 					presets: ['@babel/preset-env', '@babel/react']
 				}
 			},
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      }
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader'],
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg)$/,
+				loader: 'file-loader',
+				options: {
+					outputPath: 'build',
+				},
+			}
 		]
 	},
 	plugins: [
