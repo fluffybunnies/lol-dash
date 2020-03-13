@@ -1,0 +1,9 @@
+.Footer {
+	background-color: #eee;
+	border-top: 1px solid #ddd;
+}
+
+.Footer-legal {
+	font-size: 12px;
+	color: #999;
+}

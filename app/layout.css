@@ -1,0 +1,22 @@
+
+body {
+	font-family: arial;
+}
+
+.Site {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+.Site >header {
+	padding: 20px 20px;
+}
+.Site >main {
+	flex: 1;
+	padding: 20px 20px;
+}
+.Site >footer {
+	padding: 20px 20px;
+}
+
+

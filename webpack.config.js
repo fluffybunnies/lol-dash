@@ -1,5 +1,6 @@
 const path = require('path')
 ,HtmlWebpackPlugin = require('html-webpack-plugin')
+,config = require('./config')
 
 
 module.exports = {
@@ -27,6 +28,8 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new HtmlWebpackPlugin({title: 'LoL Dashboard'})
+		new HtmlWebpackPlugin({
+			title: config.siteDisplayName
+		})
 	]
 }
