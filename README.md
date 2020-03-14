@@ -42,9 +42,6 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 
 
 ## To Do
-- Build out the spectate-match module
-- Refresh periodically
-	- Can simply re-fetch summoner at top level
 - Create CI flow
 	- Can use sire for one-click deployment to new instances and git hooks
 - Automatically refresh dev token every day while awaiting app approval

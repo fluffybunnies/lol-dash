@@ -1,4 +1,5 @@
 {
 	"siteDisplayName": "LoL Dashboard",
-	"apiLocalHost": "/api"
+	"apiLocalHost": "/api",
+	"refreshDashboardRate": 60
 }
