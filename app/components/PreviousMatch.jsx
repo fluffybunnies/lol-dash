@@ -18,24 +18,34 @@ export default class PreviousMatch extends React.Component {
 		</div>
 	}
 
-	async componentDidMount() {
-		const listUrl = `lol/match/v4/matchlists/by-account/${encodeURIComponent(this.props.summoner.accountId)}?beginIndex=0&endIndex=1`
-		try {
-			const res = await api(listUrl)
-			if (!(res && res.matches && res.matches[0] && res.matches[0].gameId)) {
-				throw new Error('Missing res.matches, res.matches is empty, or gameId is missing')
-			}
-			const matchUrl = `lol/match/v4/matches/${encodeURIComponent(res.matches[0].gameId)}`
-			try {
-				const res = await api(matchUrl)
-				this.setState({
-					matchData: res
-				})
-			} catch (e) {
-				console.error('ERROR', 'PreviousMatch', 'getMatch', e)
-			}
-		} catch (e)  {
-			console.error('ERROR', 'PreviousMatch', 'getAccountMatches', e)
+	componentDidMount() {
+		this.fetchPreviousMatchData()
+	}
+
+	async fetchPreviousMatchData() {
+		try  {
+			const mostRecentMatchId = await this.getMostRecentMatchId(this.props.summoner)
+			const matchData = await this.getMatchById(mostRecentMatchId)
+			this.setState({
+				matchData: matchData
+			})
+		} catch (e) {
+			console.error('ERROR', 'PreviousMatch', 'fetchPreviousMatchData', e)
 		}
+	}
+
+	async getMostRecentMatchId(summoner) {
+		const url = `lol/match/v4/matchlists/by-account/${encodeURIComponent(summoner.accountId)}?beginIndex=0&endIndex=1`
+		const res = await api(url)
+		if (!(res && res.matches && res.matches[0] && res.matches[0].gameId)) {
+			throw new Error('Missing res.matches, res.matches is empty, or gameId is missing')
+		}
+		return res.matches[0].gameId
+	}
+
+	async getMatchById(matchId) {
+		const url = `lol/match/v4/matches/${encodeURIComponent(matchId)}`
+		const res = await api(url)
+		return res
 	}
 }

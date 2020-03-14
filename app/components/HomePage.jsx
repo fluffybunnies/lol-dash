@@ -4,7 +4,7 @@ import styles from './HomePage.css'
 
 import SelectSummoner from './SelectSummoner.jsx'
 import Module from './Module.jsx'
-//import CurrentMatch from './CurrentMatch.jsx'
+import CurrentMatch from './CurrentMatch.jsx'
 import PreviousMatch from './PreviousMatch.jsx'
 
 
@@ -17,11 +17,12 @@ export default class HomePage extends React.Component {
 	}
 
 	render() {
+		const contextKey = this.state.summoner && this.state.summoner.id
 		return <main className="Page HomePage">
 			<SelectSummoner onSelect={this.onSummonerSelect.bind(this)} />
 			<div className="Page-Modules">
-				{this.state.summoner && <Module content={'Current Match'} />}
-				{this.state.summoner && <Module content={<PreviousMatch summoner={this.state.summoner} key={this.state.summoner.id} />} />}
+				{this.state.summoner && <Module content={<CurrentMatch summoner={this.state.summoner} key={contextKey} />} />}
+				{this.state.summoner && <Module content={<PreviousMatch summoner={this.state.summoner} key={contextKey} />} />}
 			</div>
 		</main>
 	}
