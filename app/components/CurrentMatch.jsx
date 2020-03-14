@@ -76,6 +76,6 @@ export default class CurrentMatch extends React.Component {
 
 	buildRuneIds(player) {
 		// Exclude offense/flex/defense perks, which we don't have data for
-		return player.perks.perkIds.slice(0,5)
+		return player.perks.perkIds.slice(0,6)
 	}
 }
