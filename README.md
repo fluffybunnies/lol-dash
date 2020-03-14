@@ -32,13 +32,8 @@ npm install -g forever
 mkdir -p /var/www && cd /var/www
 git clone git@github.com:fluffybunnies/lol-dash.git
 
-# build
-cd /var/www/lol-dash
-npm install
-./node_modules/.bin/webpack
-
-# start serveer
-PORT=80 forever start /var/www/lol-dash/server.js
+# start server
+/var/www/lol-dash/restart.sh
 ```
 
 
