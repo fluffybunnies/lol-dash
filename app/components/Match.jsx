@@ -5,60 +5,64 @@ import format from '../utils/format'
 import { champIdToName } from  '../utils/champions'
 
 
+/**
+	props.match must be of this type:
+
+	{
+		startTime,
+		duration,
+		teams: [
+			{
+				key: 'winners', // or 'blue' or w/e
+				players: [
+					{
+						summonerName,
+						championId,
+						stats?
+					}
+				]
+			},
+			{
+				...
+			}
+		]
+	}
+*/
 export default class Match extends React.Component {
 	render() {
 		let matchJsx = <div className="Match-loading">Fetching match data...</div>
-		if (this.props.matchData) {
-			const teams = this.extractTeamsFromMatch(this.props.matchData)
+		if (this.props.match) {
 			matchJsx = <>
-				<div className="Match-team Match-team-winners">
-					{teams.winners.map(this.buildPlayerRow)}
-				</div>
+				{this.buildTeam(this.props.match.teams[0])}
 				<div className="Match-team-vs">vs</div>
-				<div className="Match-team Match-team-losers">
-					{teams.losers.map(this.buildPlayerRow)}
-				</div>
+				{this.buildTeam(this.props.match.teams[1])}
 			</>
 		}
 		return <div className="Match">
 			<div className="Match-title">
 				{this.props.title}
-				{this.props.matchData && <span className="Match-title-note">{format.prettyTime(this.props.matchData.gameCreation)}</span>}
+				{this.props.match && <span className="Match-title-note">{format.prettyTime(this.props.match.startTime)} ({this.formatDuration(this.props.match.duration)})</span>}
 			</div>
 			{matchJsx}
 		</div>
 	}
 
-	extractTeamsFromMatch(matchData) {
-		const teams = {
-			winners: [],
-			losers: []
-		}
-		const players = {}
-		const winningTeamId = matchData.teams[0].win == 'Win' ? matchData.teams[0].teamId : matchData.teams[1].teamId
-		matchData.participants.forEach(player => {
-			if (player.teamId == winningTeamId) {
-				teams.winners.push(players[player.participantId] = player)
-			} else {
-				teams.losers.push(players[player.participantId] = player)
-			}
-		})
-		matchData.participantIdentities.forEach(player => {
-			players[player.participantId].id = player.player
-		})
-		return teams
+	buildTeam(team) {
+		return <div className={`Match-team Match-team-${team.key}`}>
+			{team.players.map(this.buildPlayerRow)}
+		</div>
 	}
 
 	buildPlayerRow(player, index) {
 		return <div className="Match-team-player" key={index}>
-			<div className="Match-team-player-name">{player.id.summonerName}</div>
-			<div className="Match-team-player-champ">{champIdToName(player.championId)}</div>
-			<div className="Match-team-player-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>
+			<div className="Match-team-player-stat Match-team-player-stat-name">{player.summonerName}</div>
+			<div className="Match-team-player-stat Match-team-player-stat-champ">{champIdToName(player.championId)}</div>
+			{player.stats && <div className="Match-team-player-stat Match-team-player-stat-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>}
 		</div>
 	}
 
-	wrapTable(jsxRows) {
-		return <table><tbody>{jsxRows}</tbody></table>
+	formatDuration(seconds) {
+		return Math.floor(seconds / 60) + ' mins'
 	}
 
 

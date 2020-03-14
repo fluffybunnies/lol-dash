@@ -24,6 +24,12 @@
 	background: rgba(0,255,0,0.05);
 }
 .Match-team-losers {
+	background: rgba(0,0,0,0.05);
+}
+.Match-team-blue {
+	background: rgba(0,0,255,0.05);
+}
+.Match-team-red {
 	background: rgba(255,0,0,0.05);
 }
 .Match-team-vs {
@@ -36,16 +42,16 @@
 	margin: 0.1em 0;
 	display: flex;
 }
-.Match-team-player-name, .Match-team-player-champ, .Match-team-player-kda {
+.Match-team-player-stat {
 	flex-grow: 1;
 	flex-shrink: 1;
 	flex-basis: 0;
 	white-space: nowrap;
 	overflow: hidden;
 }
-.Match-team-player-name {
+.Match-team-player-stat-name {
 	flex-grow: 2;
 }
-.Match-team-player-kda {
+.Match-team-player-stat:last-child {
 	text-align: right;
 }

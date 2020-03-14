@@ -14,7 +14,7 @@ export default class PreviousMatch extends React.Component {
 
 	render() {
 		return <div className="PreviousMatch">
-			<Match title={'Previous Match'} matchData={this.state.matchData} />
+			<Match title={'Previous Match'} match={this.buildMatchDto(this.state.matchData)} />
 		</div>
 	}
 
@@ -47,5 +47,43 @@ export default class PreviousMatch extends React.Component {
 		const url = `lol/match/v4/matches/${encodeURIComponent(matchId)}`
 		const res = await api(url)
 		return res
+	}
+
+	buildMatchDto(matchData) {
+		if (!matchData) {
+			return null
+		}
+		const match = {
+			startTime: matchData.gameCreation,
+			duration: matchData.gameDuration,
+			teams: this.buildTeams(matchData)
+		}
+		return match
+	}
+
+	buildTeams(matchData) {
+		const teams = [
+			{
+				key: 'winners',
+				players: []
+			},
+			{
+				key: 'losers',
+				players: []
+			}
+		]
+		const players = {}
+		const winningTeamId = matchData.teams[0].win == 'Win' ? matchData.teams[0].teamId : matchData.teams[1].teamId
+		matchData.participants.forEach(player => {
+			if (player.teamId == winningTeamId) {
+				teams[0].players.push(players[player.participantId] = player)
+			} else {
+				teams[1].players.push(players[player.participantId] = player)
+			}
+		})
+		matchData.participantIdentities.forEach(player => {
+			players[player.participantId].summonerName = player.player.summonerName
+		})
+		return teams
 	}
 }
