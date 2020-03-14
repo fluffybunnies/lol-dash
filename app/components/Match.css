@@ -18,29 +18,23 @@
 	color: #9999;
 }
 .Match-team {
-	padding: 0.3em 0.5em;
-}
-.Match-team-winners {
-	background: rgba(0,255,0,0.05);
-}
-.Match-team-losers {
-	background: rgba(0,0,0,0.05);
-}
-.Match-team-blue {
-	background: rgba(0,0,255,0.05);
-}
-.Match-team-red {
-	background: rgba(255,0,0,0.05);
 }
 .Match-team-vs {
-	margin: 10px 0 9px 0;
+	margin: 16px 0 14px 0;
 	line-height: 1;
 	text-align: center;
 	text-transform: uppercase;
 }
 .Match-team-player {
-	margin: 0.1em 0;
+	padding: 0.3em 0.6em;
 	display: flex;
+	cursor: pointer;
+}
+.Match-team-player:first-child {
+	padding-top: 0.4em;
+}
+.Match-team-player:last-child {
+	padding-bottom: 0.4em;
 }
 .Match-team-player-stat {
 	flex-grow: 1;
@@ -55,3 +49,14 @@
 .Match-team-player-stat:last-child {
 	text-align: right;
 }
+
+
+/** team colors **/
+.Match-team-winners { background: rgba(0,255,0,0.05); }
+.Match-team-winners .Match-team-player:hover { background: rgba(0,255,0,0.2); }
+.Match-team-losers { background: rgba(0,0,0,0.05); }
+.Match-team-losers .Match-team-player:hover { background: rgba(0,0,0,0.2); }
+.Match-team-blue { background: rgba(0,0,255,0.05); }
+.Match-team-blue .Match-team-player:hover { background: rgba(0,0,255,0.2); }
+.Match-team-red { background: rgba(255,0,0,0.05); }
+.Match-team-red .Match-team-player:hover { background: rgba(255,0,0,0.2); }

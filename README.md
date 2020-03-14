@@ -38,10 +38,18 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 
 
 ## Keep Up To Date
-- Grab the latest champ file here: http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json
+- Grab the latest DataDragon version number (for use below) after each patch here: https://ddragon.leagueoflegends.com/api/versions.json
+- Champ file: http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json
+- Runes file: http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/runesReforged.json
+- All assets: https://ddragon.leagueoflegends.com/cdn/dragontail-10.5.1.tgz
 
 
 ## To Do
+- Only refresh dashboard if there are changes
+	- The issue is that it is closing any open modal
+	- Other solution is to propogate modal all the way up to Home
+- Improve modal styling
+	- The fixed size and inner scrolling are bad UI
 - Create CI flow
 	- Can use sire for one-click deployment to new instances and git hooks
 - Automatically refresh dev token every day while awaiting app approval

@@ -1,20 +1,24 @@
-const champions = require('../data/champions')
-let _championsById = null
+const championsData = require('../data/champions')
+let championsById_ = null
 
 
 module.exports.champIdToName = (champId) => {
 	const champ = championsById()[champId]
-	return champ ? champ.name : 'unknown champ'
+	if (!champ) {
+		console.warn('#DataNeedsUpdating', 'champions', champId)
+		return 'unknown champ'
+	}
+	return champ.name
 }
 
 
 function championsById() {
-	if (!_championsById) {
-		_championsById = {}
-		Object.keys(champions.data).forEach(champKey => {
-			_championsById[champions.data[champKey].key] = champions.data[champKey]
+	if (!championsById_) {
+		championsById_ = {}
+		Object.keys(championsData.data).forEach(champKey => {
+			championsById_[championsData.data[champKey].key] = championsData.data[champKey]
 		})
 	}
-	return _championsById
+	return championsById_
 }
 

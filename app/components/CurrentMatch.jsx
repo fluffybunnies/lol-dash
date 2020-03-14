@@ -64,6 +64,7 @@ export default class CurrentMatch extends React.Component {
 			}
 		]
 		matchData.participants.forEach(player => {
+			player.runeIds = this.buildRuneIds(player)
 			if (player.teamId == BLUE_TEAM_ID) {
 				teams[0].players.push(player)
 			} else {
@@ -71,5 +72,10 @@ export default class CurrentMatch extends React.Component {
 			}
 		})
 		return teams
+	}
+
+	buildRuneIds(player) {
+		// Exclude offense/flex/defense perks, which we don't have data for
+		return player.perks.perkIds.slice(0,5)
 	}
 }
