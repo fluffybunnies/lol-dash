@@ -10,13 +10,14 @@ export default class CurrentMatch extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			matchData: null
+			matchData: null,
+			copy: null
 		}
 	}
 
 	render() {
 		return <div className="CurrentMatch">
-			<Match title={'Current Match'} match={this.buildMatchDto(this.state.matchData)} />
+			<Match title={'Current Match'} match={this.buildMatchDto(this.state.matchData)} copy={this.state.copy} />
 		</div>
 	}
 
@@ -25,11 +26,18 @@ export default class CurrentMatch extends React.Component {
 	}
 
 	async fetchCurrentMatchData() {
+		this.setState({ copy: null })
 		const url = `lol/spectator/v4/active-games/by-summoner/${encodeURIComponent(this.props.summoner.id)}`
-		const res = await api(url)
-		this.setState({
-			matchData: res
-		})
+		try {
+			const res = await api(url)
+			this.setState({
+				matchData: res
+			})
+		} catch (e) {
+			this.setState({
+				copy: 'Current match not available'
+			})
+		}
 	}
 
 	buildMatchDto(matchData) {

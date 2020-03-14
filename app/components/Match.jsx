@@ -37,6 +37,8 @@ export default class Match extends React.Component {
 				<div className="Match-team-vs">vs</div>
 				{this.buildTeam(this.props.match.teams[1])}
 			</>
+		} else if (this.props.copy) {
+			matchJsx = this.props.copy
 		}
 		return <div className="Match">
 			<div className="Match-title">
