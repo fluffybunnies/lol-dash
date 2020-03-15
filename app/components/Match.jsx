@@ -21,6 +21,7 @@ import { champIdToName } from  '../utils/champions'
 					{
 						summonerName,
 						championId,
+						summonerId?,
 						stats?,
 						runeIds?
 					}
@@ -68,7 +69,7 @@ export default class Match extends React.Component {
 	}
 
 	buildPlayerRow(player, index) {
-		return <div className="Match-team-player" key={index} onClick={this.openPlayerInfo.bind(this,player)}>
+		return <div className={`Match-team-player ${player.summonerId == this.props.summonerId ? 'Match-team-player-viewing' : ''}`} key={index} onClick={this.openPlayerInfo.bind(this,player)}>
 			<div className="Match-team-player-stat Match-team-player-stat-name">{player.summonerName}</div>
 			<div className="Match-team-player-stat Match-team-player-stat-champ">{champIdToName(player.championId)}</div>
 			{player.stats && <div className="Match-team-player-stat Match-team-player-stat-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>}

@@ -14,7 +14,7 @@ export default class PreviousMatch extends React.Component {
 
 	render() {
 		return <div className="PreviousMatch">
-			<Match title={'Previous Match'} match={this.buildMatchDto(this.state.matchData)} />
+			<Match title={'Previous Match'} match={this.buildMatchDto(this.state.matchData)} summonerId={this.props.summoner.id} />
 		</div>
 	}
 
@@ -87,6 +87,7 @@ export default class PreviousMatch extends React.Component {
 		})
 		matchData.participantIdentities.forEach(player => {
 			players[player.participantId].summonerName = player.player.summonerName
+			players[player.participantId].summonerId = player.player.summonerId
 		})
 		return teams
 	}

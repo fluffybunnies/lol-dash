@@ -36,6 +36,9 @@
 .Match-team-player:last-child {
 	padding-bottom: 0.4em;
 }
+.Match-team-player-viewing {
+	font-weight: bold;
+}
 .Match-team-player-stat {
 	flex-grow: 1;
 	flex-shrink: 1;
