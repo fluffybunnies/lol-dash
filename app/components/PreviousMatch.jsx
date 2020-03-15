@@ -29,6 +29,7 @@ export default class PreviousMatch extends React.Component {
 			this.setState({
 				matchData: matchData
 			})
+			this.props.onLoad && this.props.onLoad(matchData)
 		} catch (e) {
 			console.error('ERROR', 'PreviousMatch', 'fetchPreviousMatchData', e)
 		}

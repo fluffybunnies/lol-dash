@@ -25,6 +25,7 @@
   color: #252631;
   font-size: 13px;
   border: none;
+  background: transparent;
 }
 
 .SearchBox input:focus {
