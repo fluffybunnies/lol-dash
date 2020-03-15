@@ -40,6 +40,11 @@ export default class HomePage extends React.Component {
 
 	onSummonerSelect(summoner) {
 		//console.log('Summoner fetched...', summoner)
+		if (this.state.summoner && summoner.id != this.state.summoner.id) {
+			this.setState({
+				previousMatchOffset: 0
+			})
+		}
 		this.setState({
 			summoner: summoner
 		})
