@@ -1,3 +1,7 @@
+.HomePage {
+	position: relative;
+}
+
 .HomePage >.SelectSummoner {
 	margin-bottom: 20px;
 }
@@ -7,14 +11,10 @@
 }
 
 .HomePage-globalstats {
-	height: 0;
-	overflow: visible;
-	position: relative;
-	top: -60px;
-	left: -20px;
-	display: inline-block;
-	float: right;
-	color: #ccc;
+	position: absolute;
+	top: 38px;
+	right: 40px;
+	color: #aaa;
 }
 
 .HomePage-morematches {
