@@ -5,3 +5,15 @@
 .HomePage >.SelectSummoner >.SearchBox {
 	background-color: rgba(255, 255, 255, 0.9);
 }
+
+.HomePage-morematches {
+	margin-top: 20px;
+	text-align: right;
+}
+
+.HomePage .PreviousMatch {
+	margin-bottom: 40px;
+}
+.HomePage .PreviousMatch:last-child {
+	margin-bottom: 0;
+}

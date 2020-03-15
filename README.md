@@ -45,6 +45,7 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 
 
 ## To Do
+- Style show more button
 - Only refresh dashboard if there are changes
 	- The issue is that it is closing any open modal
 	- Other solution is to propogate modal all the way up to Home

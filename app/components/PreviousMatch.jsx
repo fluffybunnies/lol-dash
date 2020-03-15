@@ -35,7 +35,9 @@ export default class PreviousMatch extends React.Component {
 	}
 
 	async getMostRecentMatchId(summoner) {
-		const url = `lol/match/v4/matchlists/by-account/${encodeURIComponent(summoner.accountId)}?beginIndex=0&endIndex=1`
+		const beginIndex = this.props.index || 0
+			,endIndex = beginIndex + 1
+			,url = `lol/match/v4/matchlists/by-account/${encodeURIComponent(summoner.accountId)}?beginIndex=${beginIndex}&endIndex=${endIndex}`
 		const res = await api(url)
 		if (!(res && res.matches && res.matches[0] && res.matches[0].gameId)) {
 			throw new Error('Missing res.matches, res.matches is empty, or gameId is missing')
