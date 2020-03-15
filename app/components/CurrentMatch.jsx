@@ -17,7 +17,7 @@ export default class CurrentMatch extends React.Component {
 
 	render() {
 		return <div className="CurrentMatch">
-			<Match title={'Current Match'} match={this.buildMatchDto(this.state.matchData)} summonerId={this.props.summoner.id} copy={this.state.copy} />
+			<Match title={'Current Match'} match={this.buildMatchDto(this.state.matchData)} summonerId={this.props.summoner.id} searchedSummoners={this.props.searchedSummoners} copy={this.state.copy} />
 		</div>
 	}
 

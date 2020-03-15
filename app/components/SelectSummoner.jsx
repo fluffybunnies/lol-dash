@@ -17,9 +17,15 @@ export default class SelectSummoner extends React.Component {
 
 	render() {
 		return <div className="SelectSummoner">
-			<SearchBox placeholder="Summoner name..." disabled={this.state.busy} onSubmit={this.onSubmit.bind(this)} />
+			<SearchBox placeholder="Summoner name..." disabled={this.state.busy} value={this.props.searchText||''} onSubmit={this.onSubmit.bind(this)} />
 			{this.state.errMsg && <div className="SelectSummoner-error">{this.state.errMsg}</div>}
 		</div>
+	}
+
+	componentDidMount() {
+		if (this.props.searchText) {
+			this.onSubmit(this.props.searchText)
+		}
 	}
 
 	async onSubmit(summonerName) {

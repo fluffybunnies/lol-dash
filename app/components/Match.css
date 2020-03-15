@@ -39,6 +39,9 @@
 .Match-team-player-viewing {
 	font-weight: bold;
 }
+.Match-team-player-searched:not(.Match-team-player-viewing) {
+	font-style: italic;
+}
 .Match-team-player-stat {
 	flex-grow: 1;
 	flex-shrink: 1;

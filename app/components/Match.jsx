@@ -21,9 +21,9 @@ import { champIdToName } from  '../utils/champions'
 					{
 						summonerName,
 						championId,
-						summonerId?,
-						stats?,
-						runeIds?
+						summonerId?, // embolden searched summoner in team lists
+						stats?, // show kda column
+						runeIds? // show player runes on click
 					}
 				]
 			},
@@ -69,7 +69,14 @@ export default class Match extends React.Component {
 	}
 
 	buildPlayerRow(player, index) {
-		return <div className={`Match-team-player ${player.summonerId == this.props.summonerId ? 'Match-team-player-viewing' : ''}`} key={index} onClick={this.openPlayerInfo.bind(this,player)}>
+		const classnames = [
+			'Match-team-player',
+			`${player.summonerId == this.props.summonerId ? 'Match-team-player-viewing' : ''}`
+		]
+		if (this.props.searchedSummoners && this.props.searchedSummoners[player.summonerId]) {
+			classnames.push('Match-team-player-searched')
+		}
+		return <div className={classnames.join(' ')} key={index} onClick={this.openPlayerInfo.bind(this,player)}>
 			<div className="Match-team-player-stat Match-team-player-stat-name">{player.summonerName}</div>
 			<div className="Match-team-player-stat Match-team-player-stat-champ">{champIdToName(player.championId)}</div>
 			{player.stats && <div className="Match-team-player-stat Match-team-player-stat-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>}
@@ -81,6 +88,9 @@ export default class Match extends React.Component {
 	}
 
 	openPlayerInfo(player) {
+		if (!player.runeIds) {
+			return // not useful atm
+		}
 		this.setState({
 			modal: <Modal content={<PlayerInfo player={player} />} onClose={this.closeModal.bind(this)} />
 		})

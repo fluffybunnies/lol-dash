@@ -6,6 +6,7 @@ import SelectSummoner from './SelectSummoner.jsx'
 import Module from './Module.jsx'
 import CurrentMatch from './CurrentMatch.jsx'
 import PreviousMatch from './PreviousMatch.jsx'
+import { setSearchedSummoner, getSearchedSummoners, setMostRecentlySearchedSummoner, getMostRecentlySearchedSummoner } from '../utils/searchHistory'
 import config from '../../config'
 
 const SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE = 5; // Gettin rate limited with dev key
@@ -18,32 +19,54 @@ export default class HomePage extends React.Component {
 			summoner: null,
 			refreshCount: 0,
 			previousMatchOffset: 0,
-			prevMatchStats: {} // by player, by game id
+			prevMatchStats: {}, // by player, by game id
+			summonerSearchPrefill: ''
 		}
 	}
 
 	render() {
 		const contextKey = this.state.summoner && `${this.state.summoner.id}ÿ${this.state.refreshCount}`
-		const prevMatchesJsx = []
+			,searchedSummoners = getSearchedSummoners()
+			,prevMatchesJsx = []
 		for (let i=0;i<=this.state.previousMatchOffset;++i) {
-			prevMatchesJsx.push(<PreviousMatch summoner={this.state.summoner} index={i} key={`${contextKey}ÿ${i}`} onLoad={this.previousMatchOnLoad.bind(this)} />)
+			prevMatchesJsx.push(<PreviousMatch summoner={this.state.summoner} index={i} searchedSummoners={searchedSummoners} key={`${contextKey}ÿ${i}`} onLoad={this.previousMatchOnLoad.bind(this)} />)
 		}
 		return <main className="Page HomePage">
-			<SelectSummoner onSelect={this.onSummonerSelect.bind(this)} />
+			<SelectSummoner onSelect={this.onSummonerSelect.bind(this)} searchText={this.state.summonerSearchPrefill} key={this.state.summonerSearchPrefill} />
 			{this.renderGlobalStats()}
 			<div className="Page-Modules">
-				{this.state.summoner && <Module><CurrentMatch summoner={this.state.summoner} key={contextKey} /></Module>}
-				{SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE && this.state.summoner && <Module>{prevMatchesJsx}<button className="HomePage-morematches" onClick={this.showMorePreviousMatches.bind(this)}>{SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE == 1 ? 'Show earlier game' : `Show ${SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE} earlier games`}</button></Module>}
+				{this.state.summoner && <Module>
+					<CurrentMatch summoner={this.state.summoner} searchedSummoners={searchedSummoners} key={contextKey} />
+				</Module>}
+				{SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE && this.state.summoner && <Module>
+						{prevMatchesJsx}
+						<button className="HomePage-morematches" onClick={this.showMorePreviousMatches.bind(this)}>{SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE == 1 ? 'Show earlier game' : `Show ${SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE} earlier games`}</button>
+				</Module>}
 			</div>
 		</main>
 	}
 
+	componentDidMount() {
+		const mostRecentlySearchedSummoner = getMostRecentlySearchedSummoner()
+		if (mostRecentlySearchedSummoner) {
+			this.setState({
+				summonerSearchPrefill: mostRecentlySearchedSummoner
+			})
+		}
+	}
+
+	componentWillUnmount() {
+		clearTimeout(this.state.refreshTimeout)
+	}
+
 	onSummonerSelect(summoner) {
 		//console.log('Summoner fetched...', summoner)
-		if (this.state.summoner && summoner.id != this.state.summoner.id) {
+		if (!this.state.summoner || summoner.id != this.state.summoner.id) {
 			this.setState({
 				previousMatchOffset: 0
 			})
+			setSearchedSummoner(summoner.id)
+			setMostRecentlySearchedSummoner(summoner.name)
 		}
 		this.setState({
 			summoner: summoner
@@ -65,10 +88,6 @@ export default class HomePage extends React.Component {
 				}
 			}, config.refreshDashboardRate * 1000)
 		})
-	}
-
-	componentWillUnmount() {
-		clearTimeout(this.state.refreshTimeout)
 	}
 
 	showMorePreviousMatches() {
