@@ -29,7 +29,7 @@ export default class HomePage extends React.Component {
 			,searchedSummoners = getSearchedSummoners()
 			,prevMatchesJsx = []
 		for (let i=0;i<=this.state.previousMatchOffset;++i) {
-			prevMatchesJsx.push(<PreviousMatch summoner={this.state.summoner} index={i} searchedSummoners={searchedSummoners} key={`${contextKey}ÿ${i}`} onLoad={this.previousMatchOnLoad.bind(this)} />)
+			prevMatchesJsx.push(<PreviousMatch summoner={this.state.summoner} index={i} searchedSummoners={searchedSummoners} searchForPlayer={this.searchForPlayer.bind(this)} key={`${contextKey}ÿ${i}`} onLoad={this.previousMatchOnLoad.bind(this)} />)
 		}
 		return <main className="Page HomePage">
 			<SelectSummoner onSelect={this.onSummonerSelect.bind(this)} searchText={this.state.summonerSearchPrefill} key={this.state.summonerSearchPrefill} />
@@ -87,6 +87,12 @@ export default class HomePage extends React.Component {
 					this.onSummonerSelect(this.state.summoner)
 				}
 			}, config.refreshDashboardRate * 1000)
+		})
+	}
+
+	searchForPlayer(playerName) {
+		this.setState({
+			summonerSearchPrefill: playerName
 		})
 	}
 

@@ -92,7 +92,7 @@ export default class Match extends React.Component {
 			return // not useful atm
 		}
 		this.setState({
-			modal: <Modal content={<PlayerInfo player={player} />} onClose={this.closeModal.bind(this)} />
+			modal: <Modal content={<PlayerInfo player={player} searchForPlayer={this.props.searchForPlayer && this.searchForPlayer.bind(this)} />} onClose={this.closeModal.bind(this)} />
 		})
 	}
 
@@ -100,6 +100,11 @@ export default class Match extends React.Component {
 		this.setState({
 			modal: null
 		})
+	}
+
+	searchForPlayer(playerName) {
+		this.props.searchForPlayer && this.props.searchForPlayer(playerName)
+		this.closeModal()
 	}
 
 }

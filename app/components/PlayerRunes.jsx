@@ -16,7 +16,6 @@ export default class PlayerRunes extends React.Component {
 					<div className="PlayerRunes-style-rune-desc">{stripTags(rune.shortDesc)}</div>
 				</div>
 			})
-			console.log('!!!!!', dtImg(style))
 			return <div className="PlayerRunes-style" style={{backgroundImage:`url(${dtImg(style.icon)})`}} key={index}>
 				<div className="PlayerRunes-style-name">{style.name}</div>
 				<div className="PlayerRunes-style-runes">{runesJsx}</div>
