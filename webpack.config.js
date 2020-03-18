@@ -5,7 +5,6 @@ const path = require('path')
 
 module.exports = {
 	mode: 'development',
-	//optimization: { minimize: false },
 	entry: ['@babel/polyfill', './app/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),
@@ -30,7 +29,7 @@ module.exports = {
 				test: /\.(png|jpe?g|gif|svg)$/,
 				loader: 'file-loader',
 				options: {
-					outputPath: 'build',
+					outputPath: 'img',
 				},
 			}
 		]
