@@ -3,7 +3,8 @@ import React from 'react'
 import config from '../../config'
 
 import styles from './Header.css'
-import logoImg from  '../assets/logoh1-rasterized-full.png'
+import logoImg from  '../assets/logoh1.svg'
+
 
 export default class Header extends React.Component {
 	render() {
