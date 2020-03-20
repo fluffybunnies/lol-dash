@@ -19,7 +19,7 @@ body {
 	background-color: rgba(37,38,49,0.97);
 }
 .Site >header {
-	padding: 20px 20px;
+	padding: 7px 20px 10px 20px;
 	border-bottom: 1px solid rgba(204,204,204,0.9);
 }
 .Site >main {

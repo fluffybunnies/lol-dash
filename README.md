@@ -45,7 +45,10 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 
 
 ## To Do
-- Style show more button
+- Implement rate limiting
+	- If get 429, start queue
+- Display rank level if possible
+- Style buttons
 - Only refresh dashboard if there are changes
 	- The issue is that it is closing any open modal
 	- Other solution is to propogate modal all the way up to Home
