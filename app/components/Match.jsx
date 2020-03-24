@@ -3,6 +3,7 @@ import React from 'react'
 import styles from './Match.css'
 
 import Modal from './Modal.jsx'
+import PlayerItems from './PlayerItems.jsx'
 import PlayerInfo from './PlayerInfo.jsx'
 import format from '../utils/format'
 import { champName, champIcon } from  '../utils/champions'
@@ -23,7 +24,8 @@ import { champName, champIcon } from  '../utils/champions'
 						championId,
 						summonerId?, // embolden searched summoner in team lists
 						stats?, // show kda column
-						runeIds? // show player runes on click
+						runeIds?, // show player runes on click
+						itemIds? // show player items
 					}
 				]
 			},
@@ -77,8 +79,8 @@ export default class Match extends React.Component {
 			classnames.push('Match-team-player-searched')
 		}
 		return <div className={classnames.join(' ')} key={index} onClick={this.openPlayerInfo.bind(this,player)}>
-			<div className="Match-team-player-stat Match-team-player-stat-name">{player.summonerName}</div>
-			<div className="Match-team-player-stat Match-team-player-stat-champ"><img className="Match-team-player-stat-champ-icon" src={champIcon(player.championId)} alt={champName(player.championId)} title={champName(player.championId)} />{champName(player.championId)}</div>
+			<div className="Match-team-player-stat Match-team-player-stat-name"><img className="Match-team-player-stat-champ-icon" src={champIcon(player.championId)} alt={champName(player.championId)} title={champName(player.championId)} />{player.summonerName}</div>
+			{player.itemIds &&  <div className="Match-team-player-stat Match-team-player-stat-items"><PlayerItems itemIds={player.itemIds} /></div>}
 			{player.stats && <div className="Match-team-player-stat Match-team-player-stat-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>}
 		</div>
 	}

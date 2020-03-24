@@ -1,0 +1,8 @@
+.PlayerItems {
+	display: flex;
+}
+.PlayerItems-item {
+	display: block;
+	height: 1.6em;
+	margin-right: 0.2em;
+}
