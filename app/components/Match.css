@@ -52,9 +52,6 @@
 .Match-team-player-stat-name {
 	flex-grow: 2;
 }
-.Match-team-player-stat:last-child {
-	text-align: right;
-}
 .Match-team-player-stat-champ-icon {
 	display: inline-block;
 	height: 1.2em;
@@ -62,6 +59,14 @@
 	vertical-align: baseline;
 	position: relative;
 	top: 0.2em;
+}
+.Match-team-player-stat:last-child {
+	text-align: right;
+}
+.Match-team-player-stat:last-child .Match-team-player-stat-champ-icon {
+	float: right;
+	margin-right: 0;
+	margin-left: 0.5em;
 }
 
 
