@@ -6,6 +6,9 @@ let itemsById_ = null
 
 
 module.exports.itemName = (itemId) => {
+	if (item.id == 0) {
+		return ''
+	}
 	const item = itemsById()[itemId]
 	if (!item) {
 		console.warn('#DataNeedsUpdating', 'items', itemId)
@@ -15,6 +18,9 @@ module.exports.itemName = (itemId) => {
 }
 
 module.exports.itemIcon = (itemId) => {
+	if (itemId == 0) {
+		return config.blankImg
+	}
 	const item = itemsById()[itemId]
 	if (!(item && item.image && item.image.full)) {
 		console.warn('#DataNeedsUpdating', 'items', 'image', itemId, item)
