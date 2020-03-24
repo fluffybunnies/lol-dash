@@ -6,7 +6,7 @@ let itemsById_ = null
 
 
 module.exports.itemName = (itemId) => {
-	if (item.id == 0) {
+	if (itemId == 0) {
 		return ''
 	}
 	const item = itemsById()[itemId]
