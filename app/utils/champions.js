@@ -1,14 +1,26 @@
 const championsData = require('../data/champions')
+,dragontail = require('./dragontail')
+,config = require('../../config')
+,CHAMPION_ICON_PATH_PREFIX = 'champion/'
 let championsById_ = null
 
 
-module.exports.champIdToName = (champId) => {
+module.exports.champName = (champId) => {
 	const champ = championsById()[champId]
 	if (!champ) {
 		console.warn('#DataNeedsUpdating', 'champions', champId)
 		return 'unknown champ'
 	}
 	return champ.name
+}
+
+module.exports.champIcon = (champId) => {
+	const champ = championsById()[champId]
+	if (!(champ && champ.image && champ.image.full)) {
+		console.warn('#DataNeedsUpdating', 'champions', 'image', champId, champ)
+		return config.blankImg
+	}
+	return dragontail.dtImg(CHAMPION_ICON_PATH_PREFIX + champ.image.full)
 }
 
 

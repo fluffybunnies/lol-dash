@@ -45,6 +45,7 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 
 
 ## To Do
+- Add items to playerinfo
 - Style buttons
 - Only refresh dashboard if there are changes
 	- The issue is that it is closing any open modal

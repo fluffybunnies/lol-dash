@@ -5,7 +5,7 @@ import styles from './Match.css'
 import Modal from './Modal.jsx'
 import PlayerInfo from './PlayerInfo.jsx'
 import format from '../utils/format'
-import { champIdToName } from  '../utils/champions'
+import { champName, champIcon } from  '../utils/champions'
 
 
 /**
@@ -78,7 +78,7 @@ export default class Match extends React.Component {
 		}
 		return <div className={classnames.join(' ')} key={index} onClick={this.openPlayerInfo.bind(this,player)}>
 			<div className="Match-team-player-stat Match-team-player-stat-name">{player.summonerName}</div>
-			<div className="Match-team-player-stat Match-team-player-stat-champ">{champIdToName(player.championId)}</div>
+			<div className="Match-team-player-stat Match-team-player-stat-champ"><img className="Match-team-player-stat-champ-icon" src={champIcon(player.championId)} alt={champName(player.championId)} title={champName(player.championId)} />{champName(player.championId)}</div>
 			{player.stats && <div className="Match-team-player-stat Match-team-player-stat-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>}
 		</div>
 	}

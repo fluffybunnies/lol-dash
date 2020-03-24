@@ -55,6 +55,14 @@
 .Match-team-player-stat:last-child {
 	text-align: right;
 }
+.Match-team-player-stat-champ-icon {
+	display: inline-block;
+	height: 1em;
+	margin-right: 0.5em;
+	vertical-align: text-bottom;
+	position: relative;
+	top: -1px;
+}
 
 
 /** team colors **/

@@ -1,5 +1,6 @@
 {
 	"siteDisplayName": "WraithZero",
 	"apiLocalHost": "/api",
-	"refreshDashboardRate": 60
+	"refreshDashboardRate": 60,
+	"blankImg": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 }
