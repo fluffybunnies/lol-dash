@@ -8,7 +8,7 @@ module.exports.statModName = (statModId) => {
 	const statMod = statModsData[statModId]
 	if (!statMod) {
 		console.warn('#DataNeedsUpdating', 'stat mod', statModId)
-		return 'unknown stat perk'
+		return 'unknown stat mod'
 	}
 	return statMod.name
 }
