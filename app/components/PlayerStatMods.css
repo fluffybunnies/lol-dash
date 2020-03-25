@@ -1,0 +1,9 @@
+.PlayerStatMods {
+	display: flex;
+	justify-content: center;
+}
+.PlayerStatMods-mod {
+	display: block;
+	height: 32px;
+	margin-right: 1em;
+}

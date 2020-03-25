@@ -1,0 +1,26 @@
+{
+	"5001": {
+		"name": "+15-90 Health (based on level)",
+		"image": "StatModsHealthScalingIcon.png"
+	},
+	"5002": {
+		"name": "+6 Armor",
+		"image": "StatModsArmorIcon.png"
+	},
+	"5003": {
+		"name": "+8 Magic Resist",
+		"image":  "StatModsMagicResIcon.png"
+	},
+	"5005": {
+		"name": "+10% Attack Speed",
+		"image": "StatModsAttackSpeedIcon.png"
+	},
+	"5007": {
+		"name": "+1-10% CDR (based on level)",
+		"image": "StatModsCDRScalingIcon.png"
+	},
+	"5008": {
+		"name": "+9 Adaptive Force",
+		"image": "StatModsAdaptiveForceIcon.png"
+	}
+}

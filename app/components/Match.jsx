@@ -25,6 +25,7 @@ import { champName, champIcon } from  '../utils/champions'
 						summonerId?, // embolden searched summoner in team lists
 						stats?, // show kda column
 						runeIds?, // show player runes on click
+						statModIds?, // show stat modifications in runes view
 						itemIds? // show player items
 					}
 				]

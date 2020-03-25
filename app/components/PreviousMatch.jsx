@@ -79,6 +79,7 @@ export default class PreviousMatch extends React.Component {
 		const winningTeamId = matchData.teams[0].win == 'Win' ? matchData.teams[0].teamId : matchData.teams[1].teamId
 		matchData.participants.forEach(player => {
 			player.runeIds = this.buildRuneIds(player)
+			player.statModIds = this.buildStatModIds(player)
 			player.itemIds = this.buildItemIds(player)
 			if (player.teamId == winningTeamId) {
 				teams[0].players.push(players[player.participantId] = player)
@@ -101,6 +102,16 @@ export default class PreviousMatch extends React.Component {
 			}
 		})
 		return runeIds
+	}
+
+	buildStatModIds(player) {
+		const statModIds = []
+		Object.keys(player.stats).forEach(statKey => {
+			if (/^statPerk[0-9]+$/.test(statKey)) {
+				statModIds.push(player.stats[statKey])
+			}
+		})
+		return statModIds
 	}
 
 	buildItemIds(player) {
