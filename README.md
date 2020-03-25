@@ -45,6 +45,7 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 
 
 ## To Do
+- Display the three tertiary runes if possible
 - Style buttons
 - Only refresh dashboard if there are changes
 	- The issue is that it is closing any open modal
