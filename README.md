@@ -39,9 +39,9 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 
 ## Keep Up To Date
 - Grab the latest DataDragon version number (for use below) after each patch here: https://ddragon.leagueoflegends.com/api/versions.json
-- Champ file: http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json
-- Runes file: http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/runesReforged.json
-- All assets: https://ddragon.leagueoflegends.com/cdn/dragontail-10.5.1.tgz
+- Champ file: http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion.json
+- Runes file: http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/runesReforged.json
+- All assets: https://ddragon.leagueoflegends.com/cdn/dragontail-11.24.1.tgz
 
 
 ## To Do
