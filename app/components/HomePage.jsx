@@ -139,18 +139,9 @@ export default class HomePage extends React.Component {
 	* @return true for win, false for loss, null for couldn't-figure-it-out
 	*/
 	playerWonMatch(summoner, matchData) {
-		for (let i=0;i<matchData.participantIdentities.length;++i) {
-			if (matchData.participantIdentities[i].player.summonerId == summoner.id) {
-				const participantId = matchData.participantIdentities[i].participantId
-				for (let n=0;n<matchData.participants.length;++n) {
-					if (matchData.participants[n].participantId == participantId) {
-						if (matchData.participants[n].stats.win) {
-							return true
-						} else {
-							return false
-						}
-					}
-				}
+		for (let i=0;i<matchData.participants.length;++i) {
+			if (matchData.participants[i].summonerId == summoner.id) {
+				return matchData.participants[i].win
 			}
 		}
 		return null
