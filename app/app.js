@@ -24,7 +24,7 @@ module.exports = {
 		})
 
 		// HTTPS Certification via certbot
-		app.use(express.static('/.well-known/acme-challenge'))
+		app.use('/.well-known/acme-challenge', express.static('../.well-known/acme-challenge'))
 
 		return app
 	}
