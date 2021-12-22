@@ -104,11 +104,7 @@ export default class PreviousMatch extends React.Component {
 	}
 
 	buildStatModIds(player) {
-		const statModIds = []
-		Object.keys(player.perks.statPerks).forEach(statKey => {
-			statModIds.push(statKey)
-		})
-		return statModIds
+		return Object.values(player.perks.statPerks)
 	}
 
 	buildItemIds(player) {
