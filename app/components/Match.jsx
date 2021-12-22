@@ -82,7 +82,7 @@ export default class Match extends React.Component {
 		return <div className={classnames.join(' ')} key={index} onClick={this.openPlayerInfo.bind(this,player)}>
 			<div className="Match-team-player-stat Match-team-player-stat-name"><img className="Match-team-player-stat-champ-icon" src={champIcon(player.championId)} alt={champName(player.championId)} title={champName(player.championId)} />{player.summonerName}</div>
 			{player.itemIds &&  <div className="Match-team-player-stat Match-team-player-stat-items"><PlayerItems itemIds={player.itemIds} /></div>}
-			{player.stats && <div className="Match-team-player-stat Match-team-player-stat-kda">{player.stats.kills} / {player.stats.deaths} / {player.stats.assists}</div>}
+			{typeof player.kills != 'undefined' && <div className="Match-team-player-stat Match-team-player-stat-kda">{player.kills} / {player.deaths} / {player.assists}</div>}
 		</div>
 	}
 
