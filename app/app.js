@@ -3,14 +3,6 @@ const express = require('express')
 ,fs = require('fs')
 ,config = require('../config')
 
-let riotOwnershipKey = ''
-fs.readFile(path.join(__dirname, '../riot.txt'), (err, file) => {
-	if (err) {
-		return console.error('error reading riot.txt', err)
-	}
-	riotOwnershipKey = file.toString()
-})
-
 module.exports = {
 	app: () => {
 		const app = express()
@@ -25,11 +17,37 @@ module.exports = {
 
 		app.use(config.apiLocalHost, require('./api'))
 
+		// API Certification
 		app.use('/riot.txt', (req, res) => {
 			res.writeHead(200, { 'content-type': 'text/plain' })
 			res.end(riotOwnershipKey)
 		})
 
+		// HTTPS Certification via certbot
+		app.use('/.well-known/acme-challenge', (req, res) => {
+			res.end(acmeChallenge)
+		})
+
 		return app
 	}
 }
+
+
+let riotOwnershipKey = ''
+fs.readFile(path.join(__dirname, '../riot.txt'), (err, file) => {
+	if (err) {
+		return console.error('error reading riot.txt', err)
+	}
+	riotOwnershipKey = file.toString()
+})
+
+
+let acmeChallenge = ''
+fs.readFile(path.join(__dirname, '../../.well-known/acme-challenge'), (err, file) => {
+	if (err) {
+		return console.error('error reading acme-challenge', err)
+	}
+	acmeChallenge = file.toString()
+})
+
+
