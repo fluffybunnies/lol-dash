@@ -1,6 +1,15 @@
 const express = require('express')
 ,path = require('path')
+,fs = require('fs')
 ,config = require('../config')
+
+let riotOwnershipKey = ''
+fs.readFile(path.join(__dirname, '../riot.txt'), (err, file) => {
+	if (err) {
+		return console.error('error reading riot.txt', err)
+	}
+	riotOwnershipKey = file.toString()
+})
 
 module.exports = {
 	app: () => {
@@ -15,6 +24,11 @@ module.exports = {
 		})
 
 		app.use(config.apiLocalHost, require('./api'))
+
+		app.use('/riot.txt', (req, res) => {
+			res.writeHead(200, { 'content-type': 'text/plain' })
+			res.end(riotOwnershipKey)
+		})
 
 		return app
 	}
