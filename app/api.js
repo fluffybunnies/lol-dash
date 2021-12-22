@@ -4,7 +4,7 @@ const http = require('https')
 module.exports = (req, res) => {
 	// Intercept request, modify host and headers
 	const proxy = http.request({
-		hostname: config.apiPlatformHost,
+		hostname: getHostname(req.url),
 		path: req.url,
 		method: req.method,
 		headers: {
@@ -22,4 +22,12 @@ module.exports = (req, res) => {
 	req.pipe(proxy, {
 		end: true
 	})
+}
+
+// TODO: Figure out what the actual ruleset is here
+function getHostname(url) {
+	if (url.indexOf('/lol/match/v5/') == 0) {
+		return config.apiRegionHost
+	}
+	return config.apiPlatformHost
 }

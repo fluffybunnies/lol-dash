@@ -38,18 +38,21 @@ export default class PreviousMatch extends React.Component {
 	async getMostRecentMatchId(summoner) {
 		const beginIndex = this.props.index || 0
 			,endIndex = beginIndex + 1
-			,url = `lol/match/v4/matchlists/by-account/${encodeURIComponent(summoner.accountId)}?beginIndex=${beginIndex}&endIndex=${endIndex}`
+			,url = `lol/match/v5/matches/by-puuid/${encodeURIComponent(summoner.puuid)}/ids?start=${beginIndex}&count=${endIndex}`
 		const res = await api(url)
-		if (!(res && res.matches && res.matches[0] && res.matches[0].gameId)) {
-			throw new Error('Missing res.matches, res.matches is empty, or gameId is missing')
+		if (!(res && Array.isArray(res))) {
+			throw new Error('Unexpected response from getMostRecentMatchId; is not an array')
 		}
-		return res.matches[0].gameId
+		return res[0]
 	}
 
 	async getMatchById(matchId) {
-		const url = `lol/match/v4/matches/${encodeURIComponent(matchId)}`
+		const url = `lol/match/v5/matches/${encodeURIComponent(matchId)}`
 		const res = await api(url)
-		return res
+		if (!(res && res.info)) {
+			throw new Error('Unexpected response from getMatchById; missing res.info')
+		}
+		return res.info
 	}
 
 	buildMatchDto(matchData) {
@@ -87,38 +90,32 @@ export default class PreviousMatch extends React.Component {
 				teams[1].players.push(players[player.participantId] = player)
 			}
 		})
-		matchData.participantIdentities.forEach(player => {
-			players[player.participantId].summonerName = player.player.summonerName
-			players[player.participantId].summonerId = player.player.summonerId
-		})
 		return teams
 	}
 
 	buildRuneIds(player) {
 		const runeIds = []
-		Object.keys(player.stats).forEach(statKey => {
-			if (/^perk[0-9]+$/.test(statKey)) {
-				runeIds.push(player.stats[statKey])
-			}
+		player.perks.styles.forEach(perkSection => {
+			perkSection.selections.forEach(perk => {
+				runeIds.push(perk.perk)
+			})
 		})
 		return runeIds
 	}
 
 	buildStatModIds(player) {
 		const statModIds = []
-		Object.keys(player.stats).forEach(statKey => {
-			if (/^statPerk[0-9]+$/.test(statKey)) {
-				statModIds.push(player.stats[statKey])
-			}
+		Object.keys(player.perks.statPerks).forEach(statKey => {
+			statModIds.push(statKey)
 		})
 		return statModIds
 	}
 
 	buildItemIds(player) {
 		const itemIds = []
-		Object.keys(player.stats).forEach(statKey => {
+		Object.keys(player).forEach(statKey => {
 			if (/^item[0-9]+$/.test(statKey)) {
-				itemIds.push(player.stats[statKey])
+				itemIds.push(player[statKey])
 			}
 		})
 		return itemIds
