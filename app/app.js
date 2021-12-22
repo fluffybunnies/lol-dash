@@ -24,9 +24,7 @@ module.exports = {
 		})
 
 		// HTTPS Certification via certbot
-		app.use('/.well-known/acme-challenge', (req, res) => {
-			res.end(acmeChallenge)
-		})
+		app.use(express.static('/.well-known/acme-challenge'))
 
 		return app
 	}
@@ -40,14 +38,4 @@ fs.readFile(path.join(__dirname, '../riot.txt'), (err, file) => {
 	}
 	riotOwnershipKey = file.toString()
 })
-
-
-let acmeChallenge = ''
-fs.readFile(path.join(__dirname, '../../.well-known/acme-challenge'), (err, file) => {
-	if (err) {
-		return console.error('error reading acme-challenge', err)
-	}
-	acmeChallenge = file.toString()
-})
-
 
