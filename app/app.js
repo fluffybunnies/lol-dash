@@ -4,8 +4,17 @@ const express = require('express')
 ,config = require('../config')
 
 module.exports = {
-	app: () => {
+	app: (forceSsl) => {
 		const app = express()
+
+		if (forceSsl) {
+			app.use((req, res, next) => {
+				if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.PORT != devPort) {
+					return res.redirect('https://' + req.get('host') + req.url)
+				}
+				next()
+			})
+		}
 
 		const publicPath = express.static(path.join(__dirname, '../build'))
 			,indexPath = path.join(__dirname, '../build/index.html')

@@ -13,5 +13,5 @@ npm install
 forever stopall
 
 # start server
-PORT=443 forever start /var/www/lol-dash/server.js
+ENV=production forever start /var/www/lol-dash/server.js
 

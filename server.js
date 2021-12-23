@@ -1,20 +1,20 @@
-const app = require('./app/app').app()
-,port = process.env.PORT || 8080
+const app = require('./app/app').app(process.ENV == 'production')
+,defaultProdPort = 443
+,defaultDevPort = 8080
 
 
-
-if (port == 443) {
+if (process.ENV == 'production') {
 	const fs = require('fs')
 	,https = require('https')
 	const httpsServer = https.createServer({
 		key: fs.readFileSync('/etc/letsencrypt/live/wraithzero.com/privkey.pem')
 		,cert: fs.readFileSync('/etc/letsencrypt/live/wraithzero.com/fullchain.pem')
 	}, app)
-	.listen(port, err => {
+	.listen(defaultProdPort, err => {
 		if (err) {
 			return console.error(err)
 		}
-		console.log('Listening on ' + port)
+		console.log('Listening on ' + defaultProdPort)
 	})
 
 	app.listen(80, err => {
@@ -24,11 +24,11 @@ if (port == 443) {
 		console.log('Also listening on 80 to redirect to https')
 	})
 } else {
-	app.listen(port, err => {
+	app.listen(defaultDevPort, err => {
 		if (err) {
 			return console.error(err)
 		}
-		console.log('Listening on ' + port)
+		console.log('Listening on ' + defaultDevPort)
 	})
 }
 
