@@ -44,6 +44,18 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 - All assets: https://ddragon.leagueoflegends.com/cdn/dragontail-11.24.1.tgz
 
 
+## SSL Cert
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/wraithzero.com/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/wraithzero.com/privkey.pem
+This certificate expires on 2022-03-23.
+These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+
+Instructions: https://letsencrypt.org/getting-started
+Should renew automatically
+
+
 ## To Do
 - Style buttons
 - Only refresh dashboard if there are changes
