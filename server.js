@@ -16,7 +16,8 @@ if (port == 443) {
 		}
 		console.log('Listening on ' + port)
 	})
-	.listen(80, err => {
+
+	app.listen(80, err => {
 		if (err) {
 			return console.error(err)
 		}
