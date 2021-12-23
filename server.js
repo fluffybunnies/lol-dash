@@ -16,6 +16,12 @@ if (port == 443) {
 		}
 		console.log('Listening on ' + port)
 	})
+	.listen(80, err => {
+		if (err) {
+			return console.error(err)
+		}
+		console.log('Also listening on 80 to redirect to https')
+	})
 } else {
 	app.listen(port, err => {
 		if (err) {
