@@ -5,6 +5,7 @@ const app = require('./app/app').app()
 
 if (port == 443) {
 	const fs = require('fs')
+	,https = require('https')
 	const httpsServer = https.createServer({
 		key: fs.readFileSync('/etc/letsencrypt/live/wraithzero.com/privkey.pem')
 		,cert: fs.readFileSync('/etc/letsencrypt/live/wraithzero.com/fullchain.pem')
