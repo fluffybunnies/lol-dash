@@ -1,9 +1,9 @@
-const app = require('./app/app').app(process.ENV == 'production')
+const app = require('./app/app').app(process.env.ENV == 'production')
 ,defaultProdPort = 443
 ,defaultDevPort = 8080
 
 
-if (process.ENV == 'production') {
+if (process.env.ENV == 'production') {
 	const fs = require('fs')
 	,https = require('https')
 	const httpsServer = https.createServer({
