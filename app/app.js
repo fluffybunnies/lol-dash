@@ -24,7 +24,15 @@ module.exports = {
 		})
 
 		// HTTPS Certification via certbot
-		app.use('/well-known/acme-challenge', express.static('well-known/acme-challenge'))
+		app.use('/.well-known/acme-challenge', (req, res) => {
+			const filename = path.join('../.well-known/acme-challenge', req.url)
+			fs.readFile(filename, (err, file) => {
+				if (err) {
+					return console.error(`error reading acme-challenge ${filename}`, err)
+				}
+				res.end(file.toString())
+			})
+		})
 
 		return app
 	}
