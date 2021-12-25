@@ -1,6 +1,7 @@
 
 # env
 /config.local.json
+/config.server.local.json
 
 # build
 /node_modules
