@@ -20,7 +20,8 @@ export default class HomePage extends React.Component {
 			refreshCount: 0,
 			previousMatchOffset: 0,
 			prevMatchStats: {}, // by player, by game id
-			summonerSearchPrefill: ''
+			summonerSearchPrefill: '',
+			modalContent: null
 		}
 	}
 
@@ -29,19 +30,20 @@ export default class HomePage extends React.Component {
 			,searchedSummoners = getSearchedSummoners()
 			,prevMatchesJsx = []
 		for (let i=0;i<=this.state.previousMatchOffset;++i) {
-			prevMatchesJsx.push(<PreviousMatch summoner={this.state.summoner} index={i} searchedSummoners={searchedSummoners} searchForPlayer={this.searchForPlayer.bind(this)} key={`${contextKey}ÿ${i}`} onLoad={this.previousMatchOnLoad.bind(this)} />)
+			prevMatchesJsx.push(<PreviousMatch summoner={this.state.summoner} index={i} searchedSummoners={searchedSummoners} searchForPlayer={this.searchForPlayer.bind(this)} onModalContentChange={this.onModalContentChange.bind(this)} key={`${contextKey}ÿ${i}`} onLoad={this.previousMatchOnLoad.bind(this)} />)
 		}
 		return <main className="Page HomePage">
 			<SelectSummoner onSelect={this.onSummonerSelect.bind(this)} searchText={this.state.summonerSearchPrefill} key={this.state.summonerSearchPrefill} />
 			{this.renderGlobalStats()}
 			<div className="Page-Modules">
 				{this.state.summoner && <Module>
-					<CurrentMatch summoner={this.state.summoner} searchedSummoners={searchedSummoners} key={contextKey} />
+					<CurrentMatch summoner={this.state.summoner} searchedSummoners={searchedSummoners} onModalContentChange={this.onModalContentChange.bind(this)} key={contextKey} />
 				</Module>}
 				{SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE && this.state.summoner && <Module>
 						{prevMatchesJsx}
 						<button className="HomePage-morematches" onClick={this.showMorePreviousMatches.bind(this)}>{SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE == 1 ? 'Show earlier game' : `Show ${SHOW_THIS_MANY_PREV_MATCHES_EACH_PAGE} earlier games`}</button>
 				</Module>}
+				{this.state.modalContent}
 			</div>
 		</main>
 	}
@@ -57,6 +59,13 @@ export default class HomePage extends React.Component {
 
 	componentWillUnmount() {
 		clearTimeout(this.state.refreshTimeout)
+	}
+
+	onModalContentChange(newModalContent) {
+		console.log('!!!!!HomePage.onModalContentChange()')
+		this.setState({
+			modalContent: newModalContent
+		})
 	}
 
 	onSummonerSelect(summoner) {

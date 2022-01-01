@@ -14,7 +14,7 @@ export default class PreviousMatch extends React.Component {
 
 	render() {
 		return <div className="PreviousMatch">
-			<Match title={'Previous Match'} match={this.buildMatchDto(this.state.matchData)} summonerId={this.props.summoner.id} searchedSummoners={this.props.searchedSummoners} searchForPlayer={this.props.searchForPlayer} />
+			<Match title={'Previous Match'} match={this.buildMatchDto(this.state.matchData)} summonerId={this.props.summoner.id} searchedSummoners={this.props.searchedSummoners} searchForPlayer={this.props.searchForPlayer} onModalContentChange={this.props.onModalContentChange} />
 		</div>
 	}
 

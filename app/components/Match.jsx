@@ -39,9 +39,6 @@ import { champName, champIcon } from  '../utils/champions'
 export default class Match extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			modal: null
-		}
 	}
 
 	render() {
@@ -61,7 +58,6 @@ export default class Match extends React.Component {
 				{this.props.match && <span className="Match-title-note">{format.prettyTime(this.props.match.startTime)} ({this.formatDuration(this.props.match.duration)})</span>}
 			</div>
 			{matchJsx}
-			{this.state.modal && this.state.modal}
 		</div>
 	}
 
@@ -94,15 +90,11 @@ export default class Match extends React.Component {
 		if (!player.runeIds) {
 			return // not useful atm
 		}
-		this.setState({
-			modal: <Modal content={<PlayerInfo player={player} searchForPlayer={this.props.searchForPlayer && this.searchForPlayer.bind(this)} />} onClose={this.closeModal.bind(this)} />
-		})
+		this.props.onModalContentChange(<Modal content={<PlayerInfo player={player} searchForPlayer={this.props.searchForPlayer && this.searchForPlayer.bind(this)} />} onClose={this.closeModal.bind(this)} />)
 	}
 
 	closeModal() {
-		this.setState({
-			modal: null
-		})
+		this.props.onModalContentChange(null)
 	}
 
 	searchForPlayer(playerName) {

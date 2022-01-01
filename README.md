@@ -71,7 +71,5 @@ https://developer.riotgames.com/app/544144/info
 ## To Do
 - Style buttons
 - Only refresh dashboard if there are changes
-	- The issue is that it is closing any open modal
-	- Other solution is to propogate modal all the way up to Home
 - Improve modal styling
 	- The fixed size and inner scrolling are bad UI
