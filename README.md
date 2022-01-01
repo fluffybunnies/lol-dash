@@ -37,6 +37,14 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 ```
 
 
+## Push up server secrets
+```
+scp ./config.server.local.json ubuntu@ec2-52-12-154-128.us-west-2.compute.amazonaws.com:/tmp/
+ssh ubuntu@ec2-52-12-154-128.us-west-2.compute.amazonaws.com 'sudo mv /tmp/config.server.local.json /var/www/lol-dash/'
+ssh ubuntu@ec2-52-12-154-128.us-west-2.compute.amazonaws.com 'sudo /var/www/lol-dash/restart.sh'
+```
+
+
 ## Keep Up To Date
 - Grab the latest DataDragon version number (for use below) after each patch here: https://ddragon.leagueoflegends.com/api/versions.json
 - Champ file: http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion.json
@@ -54,6 +62,10 @@ Certbot has set up a scheduled task to automatically renew this certificate in t
 
 Instructions: https://letsencrypt.org/getting-started
 Should renew automatically
+
+
+## Riot Developer App
+https://developer.riotgames.com/app/544144/info
 
 
 ## To Do
