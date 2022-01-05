@@ -40,7 +40,7 @@ git clone git@github.com:fluffybunnies/lol-dash.git
 ## Push up server secrets
 ```
 scp ./config.server.local.json ubuntu@ec2-52-12-154-128.us-west-2.compute.amazonaws.com:/tmp/
-ssh ubuntu@ec2-52-12-154-128.us-west-2.compute.amazonaws.com 'sudo -i mv /tmp/config.server.local.json /var/www/lol-dash/ && sudo -i /var/www/lol-dash/restart.sh'
+ssh -t ubuntu@ec2-52-12-154-128.us-west-2.compute.amazonaws.com 'sudo -i mv /tmp/config.server.local.json /var/www/lol-dash/ && sudo -i /var/www/lol-dash/restart.sh'
 ```
 
 
